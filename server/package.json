@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/app.js",
-    "worker": "nodemon src/workers/importWorker.js"
+    "dev": "node src/app.js",
+    "worker": "node src/workers/importWorker.js"
   },
   "author": "",
   "license": "ISC",
