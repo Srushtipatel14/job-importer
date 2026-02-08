@@ -1,16 +1,8 @@
-// const { Queue } = require("bullmq")
-
-// const redis=require('./redis')
-
-// module.exports=new Queue("job-import",{
-//     connection:redis
-// })
-
 const { Queue } = require("bullmq");
 const redis = require("./redis");
+const {IMPORT_JOB_QUEUE,DEAD_LETTER_JOB_QUEUE}=require("../constants/constants")
 
 module.exports = {
-  importQueue: new Queue("import-jobs", { connection: redis }),
-  errorQueue: new Queue("error-jobs", { connection: redis }),
-  deadQueue: new Queue("dead-jobs", { connection: redis })
+  importQueue: new Queue(IMPORT_JOB_QUEUE, { connection: redis }),
+  deadQueue: new Queue(DEAD_LETTER_JOB_QUEUE, { connection: redis }),
 };

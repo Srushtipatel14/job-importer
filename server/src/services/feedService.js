@@ -1,6 +1,6 @@
 const axios = require("axios");
-const xmlToJson = require("../utils/xmlToJson");
 const {importQueue} = require("../queues/jobQueue");
+const {IMPORT_JOB_NAME, EXPOENTIAL_RETRY}=require("../constants/constants")
 
 const FEEDS = [
   {
@@ -41,33 +41,24 @@ const FEEDS = [
   }
 ];
 
-
 exports.fetchFeeds = async () => {
   for (const feed of FEEDS) {
     try {
-      console.log(`📥 Fetching feed: ${feed.name}`);
-
-      const res = await axios.get(feed.url, { timeout: 15000 });
-      const json = await xmlToJson(res.data);
-
-      const jobs = json?.rss?.channel?.item || [];
-
-      console.log(`📊 ${feed.name}: ${jobs.length} jobs fetched`);
-
+      const res = await axios.get(feed.url, { timeout: 15000 });      
       await importQueue.add(
-        "IMPORT_JOBS",
+       IMPORT_JOB_NAME,
         {
           feedName: feed.name,
           feedUrl: feed.url,
-          jobs
+          xml:res.data
         },
         {
           attempts: 3,
-          backoff: { type: "exponential", delay: 5000 }
+          backoff: { type: EXPOENTIAL_RETRY, delay: 5000 }
         }
       );
     } catch (err) {
-      console.error(`❌ Failed to fetch feed: ${feed.name}`, err.message);
+      console.error(`Failed to fetch feed: ${feed.name}`, err.message);
     }
   }
 };

@@ -1,6 +1,7 @@
 type ImportLog = {
   _id: string;
   fileName: string;
+  timestamp:string;
   totalFetched: number;
   newJobs: number;
   updatedJobs: number;
@@ -38,6 +39,7 @@ export default async function Home() {
               <thead className="bg-light text-secondary">
                 <tr>
                   <th className="ps-4">Feed</th>
+                  <th>Timestamp</th>
                   <th>Total</th>
                   <th>New</th>
                   <th>Updated</th>
@@ -50,6 +52,12 @@ export default async function Home() {
                   <tr key={l._id}>
                     <td className="ps-4 text-break" style={{ maxWidth: 360 }}>
                       <small className="text-muted">{l.fileName}</small>
+                    </td>
+
+                    <td>
+                      <span className="badge rounded-pill bg-light text-dark border">
+                        {l.timestamp}
+                      </span>
                     </td>
 
                     <td>
