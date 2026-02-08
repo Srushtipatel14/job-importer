@@ -1,7 +1,7 @@
 type ImportLog = {
   _id: string;
   fileName: string;
-  timestamp:string;
+  timestamp: string;
   totalFetched: number;
   newJobs: number;
   updatedJobs: number;
@@ -38,6 +38,7 @@ export default async function Home() {
             <table className="table align-middle table-hover mb-0">
               <thead className="bg-light text-secondary">
                 <tr>
+                  <th>No.</th>
                   <th className="ps-4">Feed</th>
                   <th>Timestamp</th>
                   <th>Total</th>
@@ -48,8 +49,15 @@ export default async function Home() {
               </thead>
 
               <tbody>
-                {logs.map((l) => (
+                {logs.map((l, i) => (
+
                   <tr key={l._id}>
+                    <td>
+                      <span className="text-muted text-center">
+                        {i+1}
+                      </span>
+                    </td>
+
                     <td className="ps-4 text-break" style={{ maxWidth: 360 }}>
                       <small className="text-muted">{l.fileName}</small>
                     </td>
@@ -81,8 +89,8 @@ export default async function Home() {
                     <td>
                       <span
                         className={`badge rounded-pill ${l.failedJobs?.length
-                            ? "bg-danger-subtle text-danger"
-                            : "bg-light text-muted border"
+                          ? "bg-danger-subtle text-danger"
+                          : "bg-light text-muted border"
                           }`}
                       >
                         {l.failedJobs?.length || 0}

@@ -2,6 +2,6 @@ const IMPORT_JOB_QUEUE="import_jobs_queue";
 const DEAD_LETTER_JOB_QUEUE="dead_letter_job_queue";
 const IMPORT_JOB_NAME="IMPORT_JOBS";
 const DEAD_JOB_NAME="DEAD_JOBS";
-const EXPOENTIAL_RETRY = "exponential"
+const EXPOENTIAL_RETRY = "exponential" ;
 
 module.exports={IMPORT_JOB_QUEUE,DEAD_LETTER_JOB_QUEUE,IMPORT_JOB_NAME,DEAD_JOB_NAME,EXPOENTIAL_RETRY}
