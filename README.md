@@ -102,12 +102,18 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 cd server
 npm run dev
 
+
 ### Backend will run on:
 
 http://localhost:8000
 
+### 2. Start Worker
 
-### 2. Start Frontend Server
+cd server
+npm run worker
+
+
+### 3. Start Frontend Server
 cd client
 npm run dev
 

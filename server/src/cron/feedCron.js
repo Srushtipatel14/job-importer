@@ -2,7 +2,7 @@ const cron = require("node-cron");
 const { fetchFeeds } = require("../services/feedService");
 
 cron.schedule(
-  "*/5 * * * *",
+  "0 * * * *",
   async () => {
     console.log("Cron running at:", new Date().toISOString());
     try {
@@ -15,5 +15,3 @@ cron.schedule(
     timezone: "Asia/Kolkata",
   }
 );
-
-console.log("Cron job scheduled (every 5 minutes)");
